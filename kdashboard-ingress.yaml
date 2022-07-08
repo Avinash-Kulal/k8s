@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  namespace: kubernetes-dashboard
+  #We are connecting to pod that is in kubernetes-dashboard namespace
+spec:
+  rules:
+  - host: dashboard.com
+    http:
+      paths:
+        - pathType: Prefix
+          path: /
+          backend:
+            service:
+              name: kubernetes-dashboard
+              port: 
+                number : 80
+            #To get service name and port : kubectl get all -n kubernetes-dashboard
+            
