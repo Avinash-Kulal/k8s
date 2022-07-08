@@ -2,5 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: app-configmap
+# namespace: my-namespace  
+# here wer are running our configMap in my-namespace not in default namespace.
 data:
   database_url: mongodb-service
+# database_url: mongodb-service.database
+# above we are accessing `mongodb-service` from `database` namespace.
