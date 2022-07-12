@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-upload-express
+  labels:
+    app: image-upload-express
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: image-upload-express
+  template:
+    metadata:
+      labels:
+        app: image-upload-express
+    spec:
+      containers:
+      - name: image-upload-express
+        image: 8197297551/avinash-image-upload:2.0
+        ports:
+        - containerPort: 3636
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-upload-express-service
+spec:
+  selector:
+    app: image-upload-express
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8082
+    targetPort: 3636
+    nodePort: 30003
+
