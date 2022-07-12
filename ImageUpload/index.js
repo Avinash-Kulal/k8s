@@ -2,6 +2,8 @@ const express = require("express")
 const app = express();
 const path = require("path")
 const multer = require("multer")
+const morgan = require("morgan")
+
 require("dotenv-defaults").config();
 const { env } = process;
 
@@ -22,6 +24,7 @@ app.set('views', path.join(__dirname, '/pages'))
 app.get('/', (req, res) => {
  return res.render('home', { data: env.PORT });
 })
+app.use(morgan('tiny'));
 
 app.get('/upload', (req, res) => {
  return res.render('upload');
